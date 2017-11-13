@@ -1,0 +1,6 @@
+to jest linia ktora posiada napis kot
+a ta linia nie posiada
+ta ma tylko psa
+a tutaj schowal sie kot
+a tu brak
+tu jest tylko kotek
