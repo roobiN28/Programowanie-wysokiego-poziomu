@@ -1,35 +1,101 @@
 from Tkinter import *
-import tkMessageBox
 
-value1 = None
+first = None
 
 resultAction = None
-def add():
-    global value1
+
+
+def clear():
+    global first
     global resultAction
-    if value1 is None:
-        value1 = int(entry.get())
-        entry.delete(0,END)
+    first = None
+    resultAction = None
+    entry.delete(0, END)
+
+
+def add():
+    global first
+    global resultAction
+    if first is None:
+        first = int(entry.get())
+        entry.delete(0, END)
         resultAction = add
     else:
-        result = value1 + int(entry.get())
-        entry.delete(0,END)
-        entry.insert(0,result)
-        value1 = None
+        result = first + int(entry.get())
+        entry.delete(0, END)
+        entry.insert(0, result)
+        first = None
+        resultAction = None
+
+
+def subtract():
+    global first
+    global resultAction
+    if first is None:
+        first = int(entry.get())
+        entry.delete(0, END)
+        resultAction = add
+    else:
+        result = first - int(entry.get())
+        entry.delete(0, END)
+        entry.insert(0, result)
+        first = None
+        resultAction = None
+
+
+def multiply():
+    global first
+    global resultAction
+    if first is None:
+        first = int(entry.get())
+        entry.delete(0, END)
+        resultAction = add
+    else:
+        result = first * int(entry.get())
+        entry.delete(0, END)
+        entry.insert(0, result)
+        first = None
+        resultAction = None
+
+
+def divide():
+    global first
+    global resultAction
+    if first is None:
+        first = int(entry.get())
+        entry.delete(0, END)
+        resultAction = add
+    else:
+        result = first / int(entry.get())
+        entry.delete(0, END)
+        entry.insert(0, result)
+        first = None
+        resultAction = None
 
 
 def result():
-    resultAction()
+    global resultAction
+    if resultAction is not None:
+        resultAction()
+        resultAction = None
+
 
 root = Tk()
 
 entry = Entry(root)
-button = Button(root, text='+', command=add)
-button1 = Button(root, text='=', command=result)
+buttonClear = Button(root, text='C', command=clear)
+buttonAdd = Button(root, text='+', command=subtract)
+buttonSubtract = Button(root, text='-', command=subtract)
+buttonMultiply = Button(root, text='*', command=multiply)
+buttonDivide = Button(root, text='/', command=divide)
+buttonResult = Button(root, text='=', command=result)
 
-
-entry.grid(row=0, column=0, columnspan=2)
-button.grid(row=1, column=0)
-button1.grid(row=1, column=1)
+entry.grid(row=0, column=0, columnspan=5)
+buttonClear.grid(row=1, column=0)
+buttonAdd.grid(row=1, column=1)
+buttonSubtract.grid(row=1, column=2)
+buttonMultiply.grid(row=1, column=3)
+buttonDivide.grid(row=1, column=4)
+buttonResult.grid(row=1, column=5)
 
 root.mainloop()
